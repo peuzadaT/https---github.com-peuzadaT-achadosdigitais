@@ -1,0 +1,82 @@
+/*
+ * ARQUIVO: main.css (TEMA CLARO DEFINITIVO)
+ * PROPÓSITO: Estilos globais para o tema claro e layout principal.
+ */
+
+/* --- 1. VARIÁVEIS GLOBAIS (ROOT) - TEMA CLARO --- */
+:root {
+    /* Paleta de Cores */
+    --cor-fundo: #f0f4f8;      /* Azul muito claro, quase branco */
+    --cor-superficie: #ffffff;    /* Branco puro para cards */
+    --cor-primaria: #0969f5;      /* Azul vibrante para ações */
+    --cor-escura: #042b64;         /* Azul escuro para textos principais */
+    --cor-media: #647ca4;          /* Azul acinzentado para textos secundários */
+    --cor-clara-bordas: #dbe4f0; /* Tom para bordas sutis */
+
+    /* Tipografia */
+    --fonte-principal: 'Inter', sans-serif;
+    --cor-texto-principal: var(--cor-escura);
+    --cor-texto-secundario: var(--cor-media);
+
+    /* Layout e Efeitos */
+    --largura-container: 1200px;
+    --raio-borda: 12px;
+    --sombra-padrao: 0 4px 12px rgba(100, 124, 164, 0.1); /* Sombra mais suave */
+    --transicao-rapida: all 0.3s ease;
+}
+
+/* --- 2. RESET E PADRÕES GLOBAIS --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; transition: var(--transicao-rapida); }
+
+/* --- 3. CLASSES DE LAYOUT REUTILIZÁVEIS --- */
+.container {
+    width: 90%;
+    max-width: var(--largura-container);
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--cor-texto-principal);
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+.section-spacing {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* --- 4. ESTILOS DO CABEÇALHO (HEADER) --- */
+.main-header {
+    background-color: rgba(255, 255, 255, 0.85); /* Efeito translúcido suave */
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--cor-clara-bordas);
+}
+.main-header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { width: 160px; height: auto; }
+.logo-link:hover { opacity: 0.8; }
+
+/* --- 5. ESTILOS DO RODAPÉ (FOOTER) --- */
+.main-footer {
+    background-color: var(--cor-escura);
+    color: var(--cor-fundo);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+}

@@ -1,0 +1,272 @@
+/*
+ * ARQUIVO: carousel.css (VERSÃO FINAL - AJUSTES FINOS)
+ * PROPÓSITO: Linhas mais finas e animações para as novas linhas.
+ */
+
+:root {
+    --card-width: 300px;
+    --card-height: 420px;
+    --carousel-radius: 400px;
+}
+
+/* --- Wrapper e Fundo Animado --- */
+.carousel-wrapper {
+    width: 100%;
+    height: 600px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 40px 0;
+    position: relative;
+    background-color: var(--cor-fundo);
+}
+
+.circuit-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 4.9; /* Aumentei um pouco a opacidade para as linhas finas aparecerem mais */
+}
+
+/* Estilos para o SVG e suas linhas (paths) */
+.circuit-background svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circuit-background .path {
+    stroke-width: 0.2; /* AJUSTE: Linhas mais finas */
+    fill: none;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+}
+
+/* Animações para cada linha */
+.circuit-background .path-1 {
+    stroke: var(--cor-primaria);
+    animation: drawLine 8s linear infinite;
+}
+
+.circuit-background .path-2 {
+    stroke: var(--cor-media);
+    animation: drawLine 12s linear infinite;
+    animation-delay: -2s;
+}
+
+.circuit-background .path-3 {
+    stroke: var(--cor-escura);
+    animation: drawLine 10s linear infinite;
+    animation-delay: -5s;
+}
+
+/* NOVO: Regras para as novas linhas */
+.circuit-background .path-4 {
+    stroke: var(--cor-primaria);
+    opacity: 0.6;
+    animation: drawLine 15s linear infinite;
+    animation-delay: -3s;
+}
+
+.circuit-background .path-5 {
+    stroke: var(--cor-media);
+    animation: drawLine 7s linear infinite;
+    animation-delay: -1s;
+}
+
+.circuit-background .path-6 {
+    stroke: var(--cor-escura);
+    opacity: 0.7;
+    animation: drawLine 11s linear infinite;
+    animation-delay: -6s;
+}
+
+
+
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+.carousel-container,
+.carousel-controls {
+    z-index: 1;
+}
+
+/* O restante do arquivo (estilos do carrossel, cards, controles) permanece igual */
+.carousel-container {
+    height: 100%;
+    width: 100%;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+}
+
+.carousel {
+    position: relative;
+    width: var(--carousel-radius);
+    height: var(--carousel-radius);
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.memory-card {
+    position: absolute;
+    width: var(--card-width);
+    height: var(--card-height);
+    left: 50%;
+    top: 50%;
+    margin-left: calc(var(--card-width) / -2);
+    margin-top: calc(var(--card-height) / -2);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.memory-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    backface-visibility: hidden;
+    border-radius: var(--raio-borda);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(100, 124, 164, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.memory-date {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    margin-bottom: 8px;
+}
+
+.memory-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--cor-texto-principal);
+    font-weight: 600;
+}
+
+.memory-image {
+    width: 100%;
+    height: 150px;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.memory-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.memory-preview, .card-back p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.card-back p { flex-grow: 0; margin-bottom: 20px; }
+
+.card-back .read-full-btn {
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+.card-back .read-full-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    color: var(--cor-texto-principal);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: var(--transicao-rapida);
+    box-shadow: var(--sombra-padrao);
+}
+
+.control-btn:hover {
+    background: var(--cor-primaria);
+    color: var(--cor-superficie);
+    border-color: var(--cor-primaria);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --card-width: 260px;
+        --card-height: 440px;
+        --carousel-radius: 280px;
+    }
+}
+@media (max-width: 576px) {
+    :root {
+        --card-width: 220px;
+        --card-height: 380px;
+        --carousel-radius: 220px;
+    }
+    .carousel-wrapper { height: 500px; }
+    .section-title { font-size: 2rem; }
+}
