@@ -3,25 +3,20 @@
  * PROPÓSITO: Estilos globais para o tema claro e layout principal.
  */
 
-/* --- 1. VARIÁVEIS GLOBAIS (ROOT) - TEMA CLARO --- */
+/* --- 1. VARIÁVEIS GLOBAIS --- */
 :root {
-    /* Paleta de Cores */
-    --cor-fundo: #f0f4f8;      /* Azul muito claro, quase branco */
-    --cor-superficie: #ffffff;    /* Branco puro para cards */
-    --cor-primaria: #0969f5;      /* Azul vibrante para ações */
-    --cor-escura: #042b64;         /* Azul escuro para textos principais */
-    --cor-media: #647ca4;          /* Azul acinzentado para textos secundários */
-    --cor-clara-bordas: #dbe4f0; /* Tom para bordas sutis */
-
-    /* Tipografia */
+    --cor-fundo: #f0f4f8;
+    --cor-superficie: #ffffff;
+    --cor-primaria: #0969f5;
+    --cor-escura: #012953;
+    --cor-media: #647ca4;
+    --cor-clara-bordas: #dbe4f0;
     --fonte-principal: 'Inter', sans-serif;
     --cor-texto-principal: var(--cor-escura);
     --cor-texto-secundario: var(--cor-media);
-
-    /* Layout e Efeitos */
     --largura-container: 1200px;
     --raio-borda: 12px;
-    --sombra-padrao: 0 4px 12px rgba(100, 124, 164, 0.1); /* Sombra mais suave */
+    --sombra-padrao: 0 4px 12px rgba(100, 124, 164, 0.1);
     --transicao-rapida: all 0.3s ease;
 }
 
@@ -44,7 +39,6 @@ a { text-decoration: none; color: inherit; transition: var(--transicao-rapida); 
     max-width: var(--largura-container);
     margin: 0 auto;
 }
-
 .section-title {
     font-size: 2.5rem;
     color: var(--cor-texto-principal);
@@ -52,7 +46,6 @@ a { text-decoration: none; color: inherit; transition: var(--transicao-rapida); 
     margin-bottom: 50px;
     font-weight: 600;
 }
-
 .section-spacing {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -60,19 +53,73 @@ a { text-decoration: none; color: inherit; transition: var(--transicao-rapida); 
 
 /* --- 4. ESTILOS DO CABEÇALHO (HEADER) --- */
 .main-header {
-    background-color: rgba(255, 255, 255, 0.85); /* Efeito translúcido suave */
+    background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
-    padding: 15px 0;
+    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--cor-clara-bordas);
 }
-.main-header .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { width: 160px; height: auto; }
-.logo-link:hover { opacity: 0.8; }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo { width: 50px; height: auto; }
+.logo-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cor-escura);
+}
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+.main-nav a {
+    font-weight: 500;
+    color: var(--cor-texto-secundario);
+    padding: 5px 0;
+    position: relative;
+}
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--cor-escura);
+    transition: width 0.2s ease;
+}
+.main-nav a:hover { color: var(--cor-texto-principal); }
+.main-nav a:hover::after { width: 100%; }
 
-/* --- 5. ESTILOS DO RODAPÉ (FOOTER) --- */
+/* --- 5. NOVA SEÇÃO DE BOAS-VINDAS (HERO) --- */
+.hero-section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: var(--cor-fundo);
+}
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    color: var(--cor-escura);
+    margin-bottom: 20px;
+}
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--cor-media);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- 6. ESTILOS DO RODAPÉ (FOOTER) --- */
 .main-footer {
     background-color: var(--cor-escura);
     color: var(--cor-fundo);
